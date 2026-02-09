@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAccount } from "wagmi";
 import { Card } from "@/components/Card";
+import { TradingViewChart } from "@/components/TradingViewChart";
 
 const PAIRS = [
   { base: "ETH", quote: "USDT", coingeckoId: "ethereum" },
@@ -77,6 +78,11 @@ export default function TradePage() {
           Live prices · 15s refresh
         </div>
       </div>
+
+      {/* TradingView Chart */}
+      <Card title={`Chart: ${PAIRS[pairIndex]?.base ?? "ETH"}/USDT`}>
+        <TradingViewChart symbol={pair?.base ?? "ETH"} />
+      </Card>
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">

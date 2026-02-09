@@ -10,8 +10,28 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Web3 Identity & Rewards Hub",
-  description: "Your identity, rewards, and Web3 tools in one place",
+  title: {
+    default: "Web3 Hub — Identity, Trade, Rewards & Tools",
+    template: "%s | Web3 Hub",
+  },
+  description:
+    "Your Web3 command center: on-chain identity, live crypto trading, P2P marketplace, token mint, dog PFP generator, and essential tools. Connect your wallet and get started.",
+  keywords: ["Web3", "crypto", "trading", "identity", "rewards", "blockchain", "wallet", "DeFi"],
+  authors: [{ name: "Web3 Hub" }],
+  creator: "Web3 Hub",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Web3 Hub",
+    title: "Web3 Hub — Identity, Trade, Rewards & Tools",
+    description: "Your Web3 command center: identity, trading, marketplace, mint, and tools.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Web3 Hub — Identity, Trade, Rewards & Tools",
+    description: "Your Web3 command center: identity, trading, marketplace, and tools.",
+  },
+  robots: "index, follow",
 };
 
 export default function RootLayout({

@@ -24,7 +24,7 @@ export function Navbar() {
           href="/"
           className="text-lg font-semibold text-white hover:text-indigo-400"
         >
-          Web3 Identity & Rewards Hub
+          Web3 Hub
         </Link>
 
         <div className="flex items-center gap-6">

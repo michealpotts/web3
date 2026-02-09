@@ -21,7 +21,7 @@ export default function LandingPage() {
         </div>
         <div className="relative flex flex-col items-center justify-center px-6 py-28 text-center sm:py-36">
           <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
-            Web3 Identity & Rewards Hub
+            Web3 Hub
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-zinc-200 drop-shadow">
             Your on-chain identity, live prices, P2P trading, and tools in one place.
