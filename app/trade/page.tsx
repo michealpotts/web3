@@ -215,7 +215,7 @@ export default function TradePage() {
                     <span className="font-medium text-white">{p.base}</span>
                     <div className="text-right">
                       <p className="text-white">
-                        ${d?.price.toLocaleString(undefined, { minimumFractionDigits: 2 }) ?? "—"}
+                        ${d?.price != null ? d.price.toLocaleString(undefined, { minimumFractionDigits: 2 }) : "—"}
                       </p>
                       <p
                         className={`text-xs ${
