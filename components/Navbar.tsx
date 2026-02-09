@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/trade", label: "Trade" },
   { href: "/marketplace", label: "Marketplace" },
+  { href: "/rewards", label: "Rewards" },
   { href: "/mint", label: "Mint" },
   { href: "/dog-pfp", label: "Dog PFP" },
   { href: "/tools", label: "Tools" },

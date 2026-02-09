@@ -4,7 +4,7 @@ import { TokenPriceCharts } from "@/components/TokenPriceCharts";
 
 export default function LandingPage() {
   return (
-    <div className="relative">
+    <div className="relative animate-fade-in">
       {/* Full-page background */}
       <div className="fixed inset-0 -z-10">
         <Image
@@ -63,7 +63,7 @@ export default function LandingPage() {
       </section>
 
       {/* Quick links – eye-catching cards */}
-      <section className="mt-16">
+      <section className="mt-16 animate-fade-in-up">
         <h2 className="mb-6 text-xl font-semibold text-white">
           Explore
         </h2>
@@ -126,6 +126,25 @@ export default function LandingPage() {
             </div>
           </Link>
           <Link
+            href="/rewards"
+            className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/60 transition hover:border-amber-500/50"
+          >
+            <div className="relative aspect-[4/3] sm:aspect-[5/3]">
+              <Image
+                src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=800&q=80"
+                alt="Rewards"
+                fill
+                className="object-cover transition duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <span className="text-lg font-semibold text-white">Rewards</span>
+                <p className="text-sm text-zinc-400">Daily spin & gifts</p>
+              </div>
+            </div>
+          </Link>
+          <Link
             href="/mint"
             className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/60 transition hover:border-amber-500/50"
           >
@@ -148,12 +167,12 @@ export default function LandingPage() {
       </section>
 
       {/* Live token prices */}
-      <section className="mt-20">
+      <section className="mt-20 animate-fade-in-up">
         <TokenPriceCharts />
       </section>
 
       {/* Feature strip with strong imagery */}
-      <section className="mt-20 overflow-hidden rounded-2xl border border-zinc-800">
+      <section className="mt-20 overflow-hidden rounded-2xl border border-zinc-800 animate-fade-in-up">
         <div className="grid sm:grid-cols-3">
           <div className="relative aspect-[4/3] min-h-[240px] sm:aspect-[3/2]">
             <Image
