@@ -6,9 +6,24 @@ import { Card } from "@/components/Card";
 import { TradingViewChart } from "@/components/TradingViewChart";
 
 const PAIRS = [
-  { base: "ETH", quote: "USDT", coingeckoId: "ethereum" },
   { base: "BTC", quote: "USDT", coingeckoId: "bitcoin" },
+  { base: "ETH", quote: "USDT", coingeckoId: "ethereum" },
+  { base: "BNB", quote: "USDT", coingeckoId: "binancecoin" },
   { base: "SOL", quote: "USDT", coingeckoId: "solana" },
+  { base: "XRP", quote: "USDT", coingeckoId: "ripple" },
+  { base: "ADA", quote: "USDT", coingeckoId: "cardano" },
+  { base: "DOGE", quote: "USDT", coingeckoId: "dogecoin" },
+  { base: "AVAX", quote: "USDT", coingeckoId: "avalanche-2" },
+  { base: "MATIC", quote: "USDT", coingeckoId: "matic-network" },
+  { base: "DOT", quote: "USDT", coingeckoId: "polkadot" },
+  { base: "LINK", quote: "USDT", coingeckoId: "chainlink" },
+  { base: "LTC", quote: "USDT", coingeckoId: "litecoin" },
+  { base: "UNI", quote: "USDT", coingeckoId: "uniswap" },
+  { base: "ATOM", quote: "USDT", coingeckoId: "cosmos" },
+  { base: "SUI", quote: "USDT", coingeckoId: "sui" },
+  { base: "ARB", quote: "USDT", coingeckoId: "arbitrum" },
+  { base: "OP", quote: "USDT", coingeckoId: "optimism" },
+  { base: "PEPE", quote: "USDT", coingeckoId: "pepe" },
 ];
 
 type PriceData = { price: number; change24h: number };
@@ -87,7 +102,7 @@ export default function TradePage() {
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Card title="">
-            <div className="flex flex-wrap gap-2 border-b border-zinc-800 pb-4">
+            <div className="flex flex-wrap gap-2 border-b border-zinc-800 pb-4 max-h-24 overflow-y-auto">
               {PAIRS.map((p, i) => (
                 <button
                   key={p.base}
@@ -187,7 +202,7 @@ export default function TradePage() {
 
         <div>
           <Card title="Market">
-            <div className="space-y-3">
+            <div className="max-h-[420px] space-y-3 overflow-y-auto">
               {PAIRS.map((p) => {
                 const d = prices[p.base];
                 return (

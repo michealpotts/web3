@@ -7,6 +7,21 @@ const TRADINGVIEW_SYMBOLS: Record<string, string> = {
   ETH: "BINANCE:ETHUSDT",
   BTC: "BINANCE:BTCUSDT",
   SOL: "BINANCE:SOLUSDT",
+  BNB: "BINANCE:BNBUSDT",
+  XRP: "BINANCE:XRPUSDT",
+  ADA: "BINANCE:ADAUSDT",
+  DOGE: "BINANCE:DOGEUSDT",
+  AVAX: "BINANCE:AVAXUSDT",
+  MATIC: "BINANCE:MATICUSDT",
+  DOT: "BINANCE:DOTUSDT",
+  LINK: "BINANCE:LINKUSDT",
+  LTC: "BINANCE:LTCUSDT",
+  UNI: "BINANCE:UNIUSDT",
+  ATOM: "BINANCE:ATOMUSDT",
+  SUI: "BINANCE:SUIUSDT",
+  ARB: "BINANCE:ARBUSDT",
+  OP: "BINANCE:OPUSDT",
+  PEPE: "BINANCE:PEPEUSDT",
 };
 
 declare global {
@@ -29,7 +44,7 @@ export function TradingViewChart({ symbol }: { symbol: string }) {
     new window.TradingView!.widget({
       autosize: true,
       symbol: tvSymbol,
-      interval: "D",
+      interval: "5",
       timezone: "Etc/UTC",
       theme: "dark",
       style: "1",
@@ -38,6 +53,12 @@ export function TradingViewChart({ symbol }: { symbol: string }) {
       enable_publishing: false,
       allow_symbol_change: true,
       container_id: id,
+      studies_overrides: {},
+      overrides: {
+        "paneProperties.background": "#18181b",
+        "mainSeriesProperties.candleStyle.upColor": "#22c55e",
+        "mainSeriesProperties.candleStyle.downColor": "#ef4444",
+      },
     });
     return () => {
       container.innerHTML = "";

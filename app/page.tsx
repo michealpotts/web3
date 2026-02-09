@@ -4,20 +4,33 @@ import { TokenPriceCharts } from "@/components/TokenPriceCharts";
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className="relative">
+      {/* Full-page background */}
+      <div className="fixed inset-0 -z-10">
+        <Image
+          src="https://images.unsplash.com/photo-1642104704074-907c0698cbd9?w=1920&q=85"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-zinc-950/85" />
+      </div>
+
       {/* Hero – full-bleed with layered imagery */}
-      <section className="relative overflow-hidden rounded-2xl">
+      <section className="relative overflow-hidden rounded-2xl border border-zinc-800/50">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=85"
+            src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=90"
             alt=""
             fill
             className="object-cover"
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/70 via-zinc-950/50 to-zinc-950/90" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_0%,rgba(99,102,241,0.2),transparent_50%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/60 to-zinc-950/95" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.35),transparent_50%)]" />
         </div>
         <div className="relative flex flex-col items-center justify-center px-6 py-28 text-center sm:py-36">
           <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
@@ -80,8 +93,8 @@ export default function LandingPage() {
           >
             <div className="relative aspect-[4/3] sm:aspect-[5/3]">
               <Image
-                src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=800&q=80"
-                alt="Marketplace"
+                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
+                alt="Marketplace — Traditional balance scale, Bitcoin outweighs all"
                 fill
                 className="object-cover transition duration-500 group-hover:scale-105"
                 sizes="(max-width: 640px) 100vw, 25vw"
@@ -89,7 +102,7 @@ export default function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
                 <span className="text-lg font-semibold text-white">Marketplace</span>
-                <p className="text-sm text-zinc-400">P2P token swaps</p>
+                <p className="text-sm text-zinc-400">BTC outweighs all — P2P swaps</p>
               </div>
             </div>
           </Link>
