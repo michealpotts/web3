@@ -14,20 +14,30 @@ export default function DashboardPage() {
 
   if (!isConnected) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 text-center">
-        <h2 className="text-2xl font-semibold text-white">
-          Connect your wallet to view the dashboard
-        </h2>
-        <p className="mt-4 max-w-md text-zinc-400">
-          Use the Connect Wallet button in the navbar to get started. You&apos;ll
-          need MetaMask, WalletConnect, or another supported wallet.
-        </p>
-        <Link
-          href="/"
-          className="mt-8 rounded-lg bg-indigo-600 px-6 py-3 text-sm font-medium text-white hover:bg-indigo-500"
-        >
-          Back to Home
-        </Link>
+      <div className="relative overflow-hidden rounded-2xl border border-zinc-800">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=60"
+            alt=""
+            className="h-full w-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-zinc-950/95 to-indigo-950/80" />
+        </div>
+        <div className="relative flex flex-col items-center justify-center px-8 py-24 text-center">
+          <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+            Connect your wallet to view the dashboard
+          </h2>
+          <p className="mt-6 max-w-md text-zinc-300">
+            Use the Connect Wallet button in the navbar to get started. You&apos;ll
+            need MetaMask, WalletConnect, or another supported wallet.
+          </p>
+          <Link
+            href="/"
+            className="mt-10 rounded-xl bg-indigo-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-indigo-500/20 transition-all hover:bg-indigo-400"
+          >
+            Back to Home
+          </Link>
+        </div>
       </div>
     );
   }
