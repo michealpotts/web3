@@ -5,7 +5,9 @@ import { mainnet } from "wagmi/chains";
 import Link from "next/link";
 import Image from "next/image";
 import { Card } from "@/components/Card";
-import { MOCK_TOKEN_BALANCES, MOCK_NFTS } from "@/lib/mock-data";
+import { useWalletBalances } from "@/hooks/useWalletBalances";
+import { useTokenPrices, formatUsd } from "@/hooks/useTokenPrices";
+import { MOCK_NFTS } from "@/lib/mock-data";
 
 export function PublicProfile({ address }: { address: `0x${string}` }) {
   const { data: ensName } = useEnsName({
@@ -49,21 +51,7 @@ export function PublicProfile({ address }: { address: `0x${string}` }) {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card title="Token Balances (mock)">
-          <div className="space-y-2">
-            {MOCK_TOKEN_BALANCES.map((token) => (
-              <div
-                key={token.symbol}
-                className="flex items-center justify-between rounded-lg bg-zinc-800/50 px-4 py-3"
-              >
-                <span className="font-medium text-white">{token.symbol}</span>
-                <span className="text-zinc-400">
-                  {token.balance} (${token.usdValue})
-                </span>
-              </div>
-            ))}
-          </div>
-        </Card>
+        <ProfileTokenBalances address={address} />
 
         <Card title="NFT Gallery (mock)">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -108,5 +96,44 @@ export function PublicProfile({ address }: { address: `0x${string}` }) {
         ← Back to Dashboard
       </Link>
     </>
+  );
+}
+
+function ProfileTokenBalances({ address }: { address: `0x${string}` }) {
+  const { balances, isLoading } = useWalletBalances(address);
+  const prices = useTokenPrices();
+
+  return (
+    <Card title="Token Balances">
+      {isLoading && balances.length === 0 ? (
+        <div className="space-y-2">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-12 animate-pulse rounded-lg bg-zinc-800/50" />
+          ))}
+        </div>
+      ) : balances.length === 0 ? (
+        <p className="text-sm text-zinc-500">No token balances on Ethereum mainnet</p>
+      ) : (
+        <div className="space-y-2">
+          {balances.map((token) => {
+            const price = prices[token.symbol] ?? 0;
+            const num = parseFloat(token.balance.replace(/,/g, ""));
+            const usd = num * price;
+            return (
+              <div
+                key={token.symbol}
+                className="flex items-center justify-between rounded-lg bg-zinc-800/50 px-4 py-3"
+              >
+                <span className="font-medium text-white">{token.symbol}</span>
+                <span className="text-zinc-400">
+                  {token.balance}
+                  {price > 0 ? ` (${formatUsd(usd)})` : ""}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </Card>
   );
 }

@@ -3,19 +3,25 @@
 import { useEnsName } from "wagmi";
 import { mainnet } from "wagmi/chains";
 import { Card } from "@/components/Card";
-import {
-  MOCK_TOKEN_BALANCES,
-  MOCK_AIRDROPS,
-  MOCK_IDENTITY_SCORE,
-} from "@/lib/mock-data";
+import { useWalletBalances } from "@/hooks/useWalletBalances";
+import { useTokenPrices, formatUsd } from "@/hooks/useTokenPrices";
+import { MOCK_AIRDROPS, MOCK_IDENTITY_SCORE } from "@/lib/mock-data";
 
 export function WalletSummary({ address }: { address: `0x${string}` }) {
   const { data: ensName } = useEnsName({
     address,
     chainId: mainnet.id,
   });
+  const { balances, isLoading } = useWalletBalances(address);
+  const prices = useTokenPrices();
 
   const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
+
+  const totalUsd = balances.reduce((sum, b) => {
+    const price = prices[b.symbol] ?? 0;
+    const num = parseFloat(b.balance.replace(/,/g, ""));
+    return sum + num * price;
+  }, 0);
 
   return (
     <Card title="Wallet Summary">
@@ -36,27 +42,53 @@ export function WalletSummary({ address }: { address: `0x${string}` }) {
 
         <div>
           <p className="mb-2 text-xs uppercase tracking-wider text-zinc-500">
-            Token Balances (mock)
+            Token Balances
           </p>
-          <div className="space-y-2">
-            {MOCK_TOKEN_BALANCES.map((token) => (
-              <div
-                key={token.symbol}
-                className="flex items-center justify-between rounded-lg bg-zinc-800/50 px-4 py-3"
-              >
-                <span className="font-medium text-white">{token.symbol}</span>
-                <div className="text-right">
-                  <p className="text-white">{token.balance}</p>
-                  <p className="text-xs text-zinc-500">${token.usdValue}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          {isLoading && balances.length === 0 ? (
+            <div className="space-y-2">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-12 animate-pulse rounded-lg bg-zinc-800/50" />
+              ))}
+            </div>
+          ) : balances.length === 0 ? (
+            <p className="rounded-lg bg-zinc-800/50 px-4 py-3 text-sm text-zinc-500">
+              No token balances on Ethereum mainnet
+            </p>
+          ) : (
+            <div className="space-y-2">
+              {balances.map((token) => {
+                const price = prices[token.symbol] ?? 0;
+                const num = parseFloat(token.balance.replace(/,/g, ""));
+                const usd = num * price;
+                return (
+                  <div
+                    key={token.symbol}
+                    className="flex items-center justify-between rounded-lg bg-zinc-800/50 px-4 py-3"
+                  >
+                    <span className="font-medium text-white">{token.symbol}</span>
+                    <div className="text-right">
+                      <p className="text-white">{token.balance}</p>
+                      <p className="text-xs text-zinc-500">
+                        {price > 0 ? formatUsd(usd) : "—"}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
+
+        {totalUsd > 0 && (
+          <div className="rounded-lg bg-zinc-800/50 px-4 py-3">
+            <p className="text-xs text-zinc-500">Total (USD)</p>
+            <p className="text-xl font-semibold text-white">{formatUsd(totalUsd)}</p>
+          </div>
+        )}
 
         <div className="rounded-lg bg-zinc-800/50 px-4 py-3">
           <p className="text-xs text-zinc-500">NFT Count (mock)</p>
-          <p className="text-xl font-semibold text-white">12</p>
+          <p className="text-xl font-semibold text-white">—</p>
         </div>
       </div>
     </Card>

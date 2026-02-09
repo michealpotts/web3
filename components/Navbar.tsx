@@ -7,6 +7,9 @@ import { WalletButton } from "./WalletButton";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/dashboard", label: "Dashboard" },
+  { href: "/marketplace", label: "Marketplace" },
+  { href: "/mint", label: "Mint" },
+  { href: "/dog-pfp", label: "Dog PFP" },
   { href: "/tools", label: "Tools" },
 ];
 
