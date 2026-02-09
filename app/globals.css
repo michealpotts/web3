@@ -12,6 +12,31 @@ body {
   color: var(--foreground);
 }
 
+/* Modern scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 #27272a;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
 /* Subtle grid background for depth */
 body::before {
   content: "";

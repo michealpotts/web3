@@ -54,15 +54,17 @@ export default function TradePage() {
   const [amount, setAmount] = useState("");
   const [lastTrade, setLastTrade] = useState<string | null>(null);
 
-  const pair = PAIRS[pairIndex];
-  const priceData = prices[pair?.base];
+  const availablePairs = PAIRS.filter((p) => prices[p.base] != null);
+  const safeIndex = Math.min(pairIndex, Math.max(0, availablePairs.length - 1));
+  const pair = availablePairs[safeIndex] ?? availablePairs[0];
+  const priceData = pair ? prices[pair.base] : null;
   const price = priceData?.price ?? 0;
   const change24h = priceData?.change24h ?? 0;
 
   useEffect(() => {
     const load = () => fetchPrices().then(setPrices);
     load();
-    const t = setInterval(load, 15000);
+    const t = setInterval(load, 1000);
     return () => clearInterval(t);
   }, []);
 
@@ -90,12 +92,12 @@ export default function TradePage() {
         </div>
         <div className="flex items-center gap-2 text-sm text-zinc-500">
           <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-          Live prices · 15s refresh
+          Live prices · 1s refresh
         </div>
       </div>
 
       {/* TradingView Chart */}
-      <Card title={`Chart: ${PAIRS[pairIndex]?.base ?? "ETH"}/USDT`}>
+      <Card title={`Chart: ${pair?.base ?? "—"}/USDT`}>
         <TradingViewChart symbol={pair?.base ?? "ETH"} />
       </Card>
 
@@ -103,12 +105,12 @@ export default function TradePage() {
         <div className="lg:col-span-2">
           <Card title="">
             <div className="flex flex-wrap gap-2 border-b border-zinc-800 pb-4 max-h-24 overflow-y-auto">
-              {PAIRS.map((p, i) => (
+              {availablePairs.map((p, i) => (
                 <button
                   key={p.base}
                   onClick={() => setPairIndex(i)}
                   className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
-                    pairIndex === i
+                    safeIndex === i
                       ? "bg-indigo-600 text-white"
                       : "bg-zinc-800 text-zinc-400 hover:text-white"
                   }`}
@@ -203,7 +205,7 @@ export default function TradePage() {
         <div>
           <Card title="Market">
             <div className="max-h-[420px] space-y-3 overflow-y-auto">
-              {PAIRS.map((p) => {
+              {availablePairs.map((p) => {
                 const d = prices[p.base];
                 return (
                   <div
