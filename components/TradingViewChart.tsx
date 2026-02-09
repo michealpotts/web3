@@ -11,7 +11,7 @@ const TRADINGVIEW_SYMBOLS: Record<string, string> = {
 
 declare global {
   interface Window {
-    TradingView?: { widget: (opts: Record<string, unknown>) => void };
+    TradingView?: { widget: new (opts: Record<string, unknown>) => unknown };
   }
 }
 
@@ -26,7 +26,7 @@ export function TradingViewChart({ symbol }: { symbol: string }) {
     container.innerHTML = "";
     const id = `tradingview_${tvSymbol.replace(/:/g, "_")}_${Date.now()}`;
     container.id = id;
-    window.TradingView.widget({
+    new window.TradingView!.widget({
       autosize: true,
       symbol: tvSymbol,
       interval: "D",
