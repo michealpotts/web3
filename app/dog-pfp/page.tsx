@@ -80,9 +80,9 @@ export default function DogPFPPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen animate-fade-in">
       {/* Hero */}
-      <section className="relative overflow-hidden rounded-2xl border border-zinc-800">
+      <section className="relative overflow-hidden rounded-2xl border border-zinc-800 animate-fade-in-up">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-950/40 via-zinc-900 to-fuchsia-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(139,92,246,0.25),transparent)]" />
         <div className="relative px-6 py-16 sm:py-20 text-center">
@@ -100,7 +100,7 @@ export default function DogPFPPage() {
 
       {/* Main generator card */}
       <div className="mt-10 grid gap-8 lg:grid-cols-5">
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-3 animate-fade-in-up animate-delay-100">
           <div className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/80 shadow-2xl shadow-black/20">
             <div className="border-b border-zinc-800 bg-zinc-800/50 px-6 py-4">
               <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
@@ -163,7 +163,7 @@ export default function DogPFPPage() {
           </div>
         </div>
 
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-6 animate-fade-in-up animate-delay-200">
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-6">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
               Options

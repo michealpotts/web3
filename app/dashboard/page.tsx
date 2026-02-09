@@ -14,7 +14,7 @@ export default function DashboardPage() {
 
   if (!isConnected) {
     return (
-      <div className="relative overflow-hidden rounded-2xl border border-zinc-800">
+      <div className="relative overflow-hidden rounded-2xl border border-zinc-800 animate-fade-in-up">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=60"
@@ -43,8 +43,8 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-8 animate-fade-in">
+      <div className="flex items-center justify-between animate-fade-in-up">
         <h1 className="text-2xl font-bold text-white sm:text-3xl">Dashboard</h1>
         <Link
           href={`/u/${address}`}
@@ -55,15 +55,17 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 animate-fade-in-up animate-delay-100">
           <WalletSummary address={address!} />
         </div>
-        <div>
+        <div className="animate-fade-in-up animate-delay-200">
           <IdentityScoreCard />
         </div>
       </div>
 
-      <AirdropList />
+      <div className="animate-fade-in-up animate-delay-300">
+        <AirdropList />
+      </div>
     </div>
   );
 }

@@ -24,8 +24,8 @@ export default function MintPage() {
   }, [address]);
 
   return (
-    <div className="space-y-8">
-      <div>
+    <div className="space-y-8 animate-fade-in">
+      <div className="animate-fade-in-up">
         <h1 className="text-2xl font-bold text-white sm:text-3xl">
           Custom token mint
         </h1>
@@ -34,13 +34,13 @@ export default function MintPage() {
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2 animate-fade-in-up animate-delay-100">
         <CreateTokenForm onCreated={refresh} connectedAddress={address} />
         <MyTokensList tokens={tokens} connectedAddress={address} />
       </div>
 
       {pools.length > 0 && (
-        <div>
+        <div className="animate-fade-in-up animate-delay-200">
           <h2 className="mb-4 text-lg font-semibold text-white">Deposit pools</h2>
           <div className="grid gap-6 sm:grid-cols-2">
             {pools.map((pool) => (

@@ -96,7 +96,7 @@ export function TokenPriceCharts() {
 
   if (loading && tokens.length === 0) {
     return (
-      <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8">
+      <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 animate-pulse-soft">
         <h3 className="mb-6 text-lg font-semibold text-white">
           Live Token Prices
         </h3>
@@ -117,7 +117,7 @@ export function TokenPriceCharts() {
   }
 
   return (
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 sm:p-8">
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 sm:p-8 animate-fade-in-up">
       <div className="mb-6 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-white">Live Token Prices</h3>
         <span className="text-xs text-zinc-500">Updates every 60s · CoinGecko</span>

@@ -14,7 +14,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 animate-fade-in">
       <PublicProfile address={address as `0x${string}`} />
     </div>
   );

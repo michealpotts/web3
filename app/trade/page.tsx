@@ -80,8 +80,8 @@ export default function TradePage() {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div className="space-y-8 animate-fade-in">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between animate-fade-in-up">
         <div>
           <h1 className="text-2xl font-bold text-white sm:text-3xl">
             Crypto trading
@@ -97,12 +97,14 @@ export default function TradePage() {
       </div>
 
       {/* TradingView Chart */}
-      <Card title={`Chart: ${pair?.base ?? "—"}/USDT`}>
+      <div className="animate-fade-in-up animate-delay-100">
+        <Card title={`Chart: ${pair?.base ?? "—"}/USDT`}>
         <TradingViewChart symbol={pair?.base ?? "ETH"} />
-      </Card>
+        </Card>
+      </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 animate-fade-in-up animate-delay-200">
           <Card title="">
             <div className="flex flex-wrap gap-2 border-b border-zinc-800 pb-4 max-h-24 overflow-y-auto">
               {availablePairs.map((p, i) => (
@@ -202,7 +204,7 @@ export default function TradePage() {
           </Card>
         </div>
 
-        <div>
+        <div className="animate-slide-in-right animate-delay-200">
           <Card title="Market">
             <div className="max-h-[420px] space-y-3 overflow-y-auto">
               {availablePairs.map((p) => {

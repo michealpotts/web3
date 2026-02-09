@@ -20,7 +20,7 @@ export default function MarketplacePage() {
 
   const refresh = () => {
     setOpenOffers(getOpenOffers());
-    setMyOffers(getOffersByMaker(address?.address ?? ""));
+    setMyOffers(getOffersByMaker(address ?? ""));
   };
 
   useEffect(() => {
@@ -28,8 +28,8 @@ export default function MarketplacePage() {
   }, [address]);
 
   return (
-    <div className="space-y-8">
-      <div className="relative overflow-hidden rounded-2xl border border-zinc-800">
+    <div className="space-y-8 animate-fade-in">
+      <div className="relative overflow-hidden rounded-2xl border border-zinc-800 animate-fade-in-up">
         <div className="relative h-40 sm:h-48">
           <Image
             src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80"
@@ -49,14 +49,16 @@ export default function MarketplacePage() {
         </div>
       </div>
 
-      <OpenOffersList
+      <div className="animate-fade-in-up animate-delay-100">
+        <OpenOffersList
         offers={openOffers}
         onAccept={() => {}}
         onRefresh={refresh}
         connectedAddress={address}
-      />
+        />
+      </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2 animate-fade-in-up animate-delay-200">
         <CreateOfferForm onCreated={refresh} connectedAddress={address} />
         <MyOffersList
           offers={myOffers}

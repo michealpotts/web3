@@ -20,7 +20,7 @@ export function PublicProfile({ address }: { address: `0x${string}` }) {
   return (
     <>
       {/* Profile header with cover */}
-      <div className="relative mb-8 overflow-hidden rounded-2xl border border-zinc-800">
+      <div className="relative mb-8 overflow-hidden rounded-2xl border border-zinc-800 animate-fade-in-up">
         <div className="relative h-40 sm:h-48">
           <Image
             src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1200&q=60"
@@ -50,7 +50,7 @@ export function PublicProfile({ address }: { address: `0x${string}` }) {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2 animate-fade-in-up animate-delay-100">
         <ProfileTokenBalances address={address} />
 
         <Card title="NFT Gallery (mock)">

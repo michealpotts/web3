@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Navbar } from "@/components/Navbar";
+import { RewardSpinFab } from "@/components/RewardSpinFab";
 import "./globals.css";
 
 const inter = Inter({
@@ -49,6 +50,7 @@ export default function RootLayout({
           <main className="relative z-10 mx-auto min-h-[calc(100vh-4rem)] max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             {children}
           </main>
+          <RewardSpinFab />
         </Providers>
       </body>
     </html>
